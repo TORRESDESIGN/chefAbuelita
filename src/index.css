@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/*custom breakpoints*/
+@theme {
+  --breakpoint-xs: 22.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --gold-main: #F3BA20;
+  --gold-secondary: #F1D487;
+  --btn-main: #4B9EBF;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    color: black;
+    background-color: var(--gold-secondary);
+  }
+
+Header {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  /*font-size: tailwin managed*/
+  font-style: normal;
+  background-color: var(--gold-main);
+  height: auto;
+  margin-bottom: 51px;
+}
+
+Header h1 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+main {
+  max-width: 767px;
+  height: 500px;/*auto*/
+  margin: auto;
+  outline: 1px solid white;
+}
+input {
+  background-color: white;
+  width: 472px;
+  height: 71px;
+  margin-right: 20px;
+  border-radius: 7px;
+}
+button {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 2rem;
+  font-weight: 400;
+  border-radius: 7px;
+}
+.btn-add {
+  width: 275px;
+  height: 71px;
+  background-color: var(--btn-main);
+}
+
+/*phone size*/
+@media screen and (max-width: 360px) {
+  body {
+    background-color: pink;
+  }
+}
