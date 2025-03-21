@@ -1,6 +1,6 @@
 #Local Files
 ai.js
-
+*.env
 # Logs
 logs
 *.log
