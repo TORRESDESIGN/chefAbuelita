@@ -7,9 +7,16 @@ function App() {
     <>
       <Header />
       <main>
+        <div className="info-wrappper">
+          <i className="fa-solid fa-robot"></i>
+          <details>
+            <summary>Enter what ingredients you have amigo!</summary>
+            <p>I'll give a delicious recipe you can cook.</p>
+          </details>
+        </div>
         <form className="flex" action="addIngredients">
-          <input type="text" placehoder="Tortillas" />
-          <button className="btn-add">Add Item</button>
+          <input type="text" placeholder="Cheese" />
+          <button className="btn-add">+ Add Item</button>
         </form>
       </main>
     </>
