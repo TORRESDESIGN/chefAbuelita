@@ -15,7 +15,8 @@ function App() {
           </details>
         </div>
         <form className="flex" action="addIngredients">
-          <input type="text" placeholder="Cheese" />
+          <label htmlFor="ingredients"></label>
+          <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" />
           <button className="btn-add">+ Add Item</button>
         </form>
       </main>
