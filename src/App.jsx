@@ -3,6 +3,18 @@ import Header from './Header'
 
 function App() {
 
+  const [ingredients, setIngredients] = React.useState(["cheese"]);
+  console.log(ingredients);
+
+  function addIngredients(event) {
+    event.preventDefault()
+    const formEl = event.currentTarget;
+    const formData = new FormData(formEl);
+    const ingredient = formData.get("ingredients")
+    setIngredients(prevItem => {
+      return [...prevItem, ingredient]
+    }) 
+  }
   return (
     <>
       <Header />
@@ -14,7 +26,7 @@ function App() {
             <p>I'll give a delicious recipe you can cook.</p>
           </details>
         </div>
-        <form className="flex" action="addIngredients">
+        <form className="flex" onSubmit={addIngredients} method="POST">
           <label htmlFor="ingredients"></label>
           <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" />
           <button className="btn-add">+ Add Item</button>
