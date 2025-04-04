@@ -2,17 +2,29 @@ const PORT = 8000;
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
+import bodyParser from "body-parser";
 import Anthropic from "@anthropic-ai/sdk";
 import 'dotenv/config';
 
 const app = express();
 
+
 // Add middleware
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
+
 //app.use(express.json());
 //app.use(cors());
 
 const SYSTEM_PROMPT = process.env.PROMPT;
 
+app.post('/recipe', (req, res) => {
+    res.json({
+        'ingredients': `${req.body.ingredients}`
+    })
+})
+
+/*
 const ingredientsArr = ["tortillas", "cheese", "onions"];
 
 app.get('/', async (req, res) => {
@@ -45,6 +57,7 @@ app.get('/', async (req, res) => {
         });
     }
 });
+*/
 
 app.listen(PORT, () => {
     console.log(`Server is running on: ${PORT}`);

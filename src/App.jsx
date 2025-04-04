@@ -6,6 +6,7 @@ function App() {
   const [ingredients, setIngredients] = React.useState(["cheese"]);
   console.log(ingredients);
 
+/*
   const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
     ))
@@ -16,6 +17,7 @@ function App() {
       return [...prevItem, newIngredient]
     }) 
   }
+*/
   return (
     <>
       <Header />
@@ -27,13 +29,12 @@ function App() {
             <p>I'll give a delicious recipe you can cook.</p>
           </details>
         </div>
-        <form className="flex" action={addIngredients} method="POST">
+        <form className="flex" action="/recipe" method="POST">
           <label htmlFor="ingredients"></label>
           <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" />
           <button className="btn-add">+ Add Item</button>
         </form>
         <ul>
-          {ingredientsListItems}
         </ul>
       </main>
     </>
