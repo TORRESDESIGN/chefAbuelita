@@ -6,15 +6,25 @@ import Anthropic from "@anthropic-ai/sdk";
 import 'dotenv/config';
 
 const app = express();
+const corsOptions = {
+    origin: ["http://localhost:5173"]
+};
 
 // Add middleware
 //app.use(express.json());
 //app.use(cors());
+app.use(cors(corsOptions));
 
 const SYSTEM_PROMPT = process.env.PROMPT;
 
 const ingredientsArr = ["tortillas", "cheese", "onions"];
 
+app.get('/', (req, res) => {
+    res.json({
+        Ingredients: ingredientsArr
+    })
+})
+/*
 app.get('/', async (req, res) => {
     try {
         const anthropic = new Anthropic({  
@@ -45,7 +55,7 @@ app.get('/', async (req, res) => {
         });
     }
 });
-
+*/
 app.listen(PORT, () => {
     console.log(`Server is running on: ${PORT}`);
 });

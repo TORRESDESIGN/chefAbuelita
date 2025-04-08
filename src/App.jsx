@@ -1,10 +1,20 @@
 import React from 'react'
 import Header from './Header'
+import axios from 'axios';
 
 function App() {
 
   const [ingredients, setIngredients] = React.useState(["cheese"]);
   console.log(ingredients);
+
+  const fetchAPI = async () => {
+    const response = await axios.get("http://localhost:8000")
+    console.log(response.data.Ingredients);
+  }
+
+  React.useEffect(() => {
+    fetchAPI();
+  }, []);
 
   const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
