@@ -1,21 +1,24 @@
 import React from 'react'
 import Header from './Header'
-import axios from 'axios';
+//import axios from 'axios';
 
 function App() {
 
-  const [ingredients, setIngredients] = React.useState(["cheese"]);
-  console.log(ingredients);
-
-  const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:8000")
-    console.log(response.data.Ingredients);
-  }
-
-  React.useEffect(() => {
-    fetchAPI();
-  }, []);
-
+  const [ingredients, setIngredients] = React.useState([]);
+  //console.log(ingredients);
+/*
+  fetch("http://localhost:8000", {
+    method: "POST",
+    body: JSON.stringify({
+      "ingredients": ingredients
+    }),
+    header: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then(res => res.json())
+    .then(json => console.log(json))
+*/
   const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
     ))
@@ -25,6 +28,10 @@ function App() {
     setIngredients(prevItem => {
       return [...prevItem, newIngredient]
     }) 
+  }
+
+  function getRecipe() {
+    console.log(`Using ${ingredients} to get Recipe doggy!`)
   }
   return (
     <>
@@ -45,6 +52,8 @@ function App() {
         <ul>
           {ingredientsListItems}
         </ul>
+        <br />
+        <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>
       </main>
     </>
   )
