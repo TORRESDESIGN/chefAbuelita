@@ -30,8 +30,23 @@ function App() {
     }) 
   }
 
-  function getRecipe() {
+  const URL = 'http://localhost:8000/recipe'
+  async function getRecipe() {
     console.log(`Using ${ingredients} to get Recipe doggy!`)
+    let response = await fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify(ingredients),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    if (response.ok) {
+    const result = await response.json();
+    console.log('Success:', result);
+  } else {
+    console.error('Error:', response.status, response.statusText);
+  }
+
   }
   return (
     <>

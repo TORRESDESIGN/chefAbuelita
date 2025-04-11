@@ -1,6 +1,7 @@
 const PORT = 8000;
 import express from 'express';
 import cors from 'cors';
+import bodyParser  from 'body-parser';
 //import axios from 'axios';
 import Anthropic from "@anthropic-ai/sdk";
 import 'dotenv/config';
@@ -14,6 +15,8 @@ const corsOptions = {
 //app.use(express.json());
 //app.use(cors());
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const SYSTEM_PROMPT = process.env.PROMPT;
 
@@ -22,6 +25,17 @@ const ingredientsArr = ["tortillas", "cheese", "onions"];
 app.get('/', (req, res) => {
     res.json({
         Ingredients: ingredientsArr
+    })
+})
+
+app.post('/recipe', (req, res) => {
+    const ingredients = req.body;
+    console.log(`I got your ingredients of ${ingredients}, let me think of a recipe hijo mio...`)
+
+    res.json({
+        success: true,
+        message: "completed",
+        data: ingredients
     })
 })
 /*
