@@ -43,7 +43,7 @@ Header h1 {
 
 main {
   max-width: 767px;
-  height: 500px;/*auto*/
+  height: auto;/*auto*/
   margin: auto;
   outline: 1px solid white;
 }
@@ -97,7 +97,14 @@ input {
   align-items: center;
   padding-bottom: 8px;
 }
-
+.recipe-container h2 {
+    line-height: 28px;
+    font-size: 2rem;
+    font-weight: 400;
+}
+.recipe-container h3 {
+  font-size: 1.5;
+}
 /*phone size*/
 @media screen and (max-width: 360px) {
   body {

@@ -1,10 +1,12 @@
 import React from 'react'
 import Header from './Header'
+import ReactMarkdown from 'react-markdown'
 //import axios from 'axios';
 
 function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
+  const [recipe, setRecipe] = React.useState("");
   //console.log(ingredients);
 /*
   fetch("http://localhost:8000", {
@@ -42,7 +44,8 @@ function App() {
     })
     if (response.ok) {
     const result = await response.json();
-    console.log('Success:', result);
+    setRecipe(result.message)
+    console.log('Success:', result.message);
   } else {
     console.error('Error:', response.status, response.statusText);
   }
@@ -69,6 +72,9 @@ function App() {
         </ul>
         <br />
         <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>
+        <section className="recipe-container">
+          <ReactMarkdown>{recipe}</ReactMarkdown>
+        </section>
       </main>
     </>
   )

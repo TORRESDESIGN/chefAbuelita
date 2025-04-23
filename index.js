@@ -57,7 +57,8 @@ app.post('/recipe', async (req, res) => {
         max_tokens: 1024,
         system: SYSTEM_PROMPT,
         messages: [
-            { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
+            { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make 
+        and also add an option on how to make it a little healthier. Format your response in markdown to make it easier to render to a web page.` },
         ],
     });
     return msg.content[0].text
