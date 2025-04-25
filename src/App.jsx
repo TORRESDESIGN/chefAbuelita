@@ -7,20 +7,8 @@ function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
-  //console.log(ingredients);
-/*
-  fetch("http://localhost:8000", {
-    method: "POST",
-    body: JSON.stringify({
-      "ingredients": ingredients
-    }),
-    header: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then(res => res.json())
-    .then(json => console.log(json))
-*/
+  console.log(recipe, recipe.length);
+
   const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
     ))
