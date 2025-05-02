@@ -59,8 +59,14 @@ function App() {
           {ingredientsListItems}
         </ul>
         <br />
-        <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>
         <section className="recipe-container">
+          {!recipe && <div>
+          <h3>Ready to get cooking?</h3>
+          <p>Generate a Mexican dish recipe from the list of ingredients.</p>
+          <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>
+          </div>
+          }
+          {recipe && <hr />}
           <ReactMarkdown>{recipe}</ReactMarkdown>
         </section>
       </main>

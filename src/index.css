@@ -15,8 +15,12 @@
 :root {
   --gold-main: #F3BA20;
   --gold-secondary: #F1D487;
+  --recipe-paper:#F8EED2;
   --btn-main: #4B9EBF;
   --btn-main-clicked: #347893;
+  --btn-second: #BF6415;
+  --btn-second-clicked: #8F4B10;
+
 }
 
 body {
@@ -24,6 +28,11 @@ body {
     font-family: Roboto, sans-serif;
     color: black;
     background-color: var(--gold-secondary);
+}
+
+h1, h2, h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -40,8 +49,12 @@ h3 {
 
 ol, ul {
   list-style: revert;
+  padding: 10px 0 10px 40px;
 }
 
+ol li, ul li {
+  margin-bottom: 10px;
+}
 Header {
   font-family: "Pacifico", cursive;
   font-weight: 400;
@@ -62,6 +75,7 @@ main {
   height: auto;/*auto*/
   margin: auto;
   outline: 1px solid white;
+  margin-bottom: 51px;
 }
 input {
   font-size: 1.5rem;
@@ -88,6 +102,15 @@ details p, details summary {
 input {
   padding: 8px;
 }
+
+hr {
+  border: 3px solid var(--btn-second);
+}
+
+p {
+  color: #36454F;
+  margin-bottom: 4.5rem;
+}
 .btn-add {
   width: 275px;
   height: 71px;
@@ -96,22 +119,31 @@ input {
   border-bottom: 6px solid var(--btn-main-clicked);
   border-left: 6px solid var(--btn-main-clicked);
 }
-.btn-add:hover, .btn-get:hover {
+.btn-add:hover {
   background-color: var(--btn-main-clicked);
   border: none;
 }
 .btn-get {
   width: 275px;
   height: 71px;
-  background-color: var(--btn-main);
+  background-color: var(--btn-second);
   cursor: pointer;
-  border-bottom: 6px solid var(--btn-main-clicked);
-  border-left: 6px solid var(--btn-main-clicked);
+  border-bottom: 6px solid var(--btn-second-clicked);
+  border-left: 6px solid var(--btn-second-clicked);
+}
+.btn-get:hover {
+  background-color: var(--btn-second-clicked);
+  border: none;
 }
 .info-wrappper {
   display: flex;
   align-items: center;
   padding-bottom: 8px;
+}
+.recipe-container {
+  background-color: var(--recipe-paper);
+  padding: 20px 24px;
+  border-radius: 7px;
 }
 .recipe-container h2 {
     line-height: 28px;
