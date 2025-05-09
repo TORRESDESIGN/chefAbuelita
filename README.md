@@ -5,5 +5,6 @@ An app powered by Ai to help you cook a delicoius Mexican dish with the ingredie
 WIP:
 
 ---	
-![image](https://github.com/user-attachments/assets/2be4ceeb-eb9d-41a7-ac02-5089d3a3719a)
+![image](https://github.com/user-attachments/assets/39ed5fc3-7645-4524-a9d5-4dcd1842b82d)
+
 
