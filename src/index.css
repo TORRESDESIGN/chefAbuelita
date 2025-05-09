@@ -74,7 +74,7 @@ main {
   max-width: 767px;
   height: auto;/*auto*/
   margin: auto;
-  outline: 1px solid white;
+  /*outline: 1px solid white;*/
   margin-bottom: 51px;
 }
 input {
@@ -110,6 +110,14 @@ hr {
 p {
   color: #36454F;
   margin-bottom: 4.5rem;
+}
+
+details ol{
+  border: 2px solid black;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  padding-right: 20px;
+  padding-top: 17px;
 }
 .btn-add {
   width: 275px;
@@ -155,8 +163,9 @@ p {
   font-size: 1.5;
 }
 /*phone size*/
-@media screen and (max-width: 360px) {
-  body {
-    background-color: pink;
-  }
+@media screen and (max-width: 600px) {
+  Header {
+  height: auto;
+  margin-bottom: 7px;
+}
 }

@@ -7,7 +7,7 @@ function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
-  console.log(recipe, recipe.length);
+  //console.log(recipe, recipe.length);
 
   const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
@@ -46,8 +46,11 @@ function App() {
         <div className="info-wrappper">
           <i className="fa-solid fa-robot"></i>
           <details>
-            <summary>Enter what ingredients you have amigo!</summary>
-            <p>I'll give a delicious recipe you can cook.</p>
+            <summary>What it is this app for?</summary>
+            <ol>
+              <li>Enter what ingredients(🍅🥩🥔) you have amigo!</li>
+              <li>I'll give a delicious recipe you can cook!🍳</li>
+            </ol>
           </details>
         </div>
         <form className="flex" action={addIngredients} method="POST">
@@ -59,7 +62,7 @@ function App() {
           {ingredientsListItems}
         </ul>
         <br />
-        <section className="recipe-container">
+        <section className="recipe-container" aria-live="polite">
           {!recipe && <div>
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
