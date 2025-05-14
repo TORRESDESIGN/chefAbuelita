@@ -53,7 +53,7 @@ function App() {
             </ol>
           </details>
         </div>
-        <form className="flex" action={addIngredients} method="POST">
+        <form className="flex flex-sauce" action={addIngredients} method="POST">
           <label htmlFor="ingredients"></label>
           <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" />
           <button className="btn-add">+ Add Item</button>
@@ -63,7 +63,7 @@ function App() {
         </ul>
         <br />
         <section className="recipe-container" aria-live="polite">
-          {!recipe && <div>
+          {!recipe && <div className="flex-me">
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
           <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>

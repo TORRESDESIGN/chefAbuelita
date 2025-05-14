@@ -73,7 +73,7 @@ Header h1 {
 main {
   max-width: 767px;
   height: auto;/*auto*/
-  margin: auto;
+  margin: 0px auto;
   /*outline: 1px solid white;*/
   margin-bottom: 51px;
 }
@@ -84,6 +84,7 @@ input {
   height: 71px;
   margin-right: 20px;
   border-radius: 7px;
+  padding: 8px;
 }
 button {
   font-family: "Roboto", sans-serif;
@@ -92,15 +93,13 @@ button {
   font-weight: 400;
   border-radius: 7px; 
 }
+
 i {
   padding-right: 8px;
 }
 details p, details summary {
   cursor: pointer;
   color: #36454F;
-}
-input {
-  padding: 8px;
 }
 
 hr {
@@ -148,6 +147,7 @@ details ol{
   align-items: center;
   padding-bottom: 8px;
 }
+
 .recipe-container {
   background-color: var(--recipe-paper);
   padding: 20px 24px;
@@ -167,5 +167,36 @@ details ol{
   Header {
   height: auto;
   margin-bottom: 7px;
-}
-}
+  }
+
+  main {
+    max-width: 95%;
+    min-width: 328px;
+  }
+
+  input {
+    min-width: 328px;
+    max-width: 95%;
+    margin: 0;
+  }
+  
+  .btn-add {
+    min-width: 328px;
+    max-width: 95%;
+  }
+
+  .flex-me {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-get {
+    min-width: 294px;
+    align-items: center;
+  }
+
+  .flex-sauce {
+    @apply flex-wrap gap-y-4;
+  }
+
+}/*end of @meda */
