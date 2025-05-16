@@ -14,10 +14,24 @@ function App() {
     ))
 
   function addIngredients(formData) {
+    document.getElementById("btn-get").disabled = false;
     const newIngredient = formData.get("ingredients")
     setIngredients(prevItem => {
       return [...prevItem, newIngredient]
     }) 
+  }
+
+  function undo() {
+    setIngredients(prevItem => {
+      prevItem.pop()
+      return [...prevItem]
+    })
+    document.getElementById("btn-get").disabled = true;
+    console.log(ingredients);
+  }
+
+  function resetPage() {
+    location.reload()
   }
 
   const URL = 'http://localhost:8000/recipe'
@@ -34,10 +48,9 @@ function App() {
     const result = await response.json();
     setRecipe(result.message)
     console.log('Success:', result.message);
-  } else {
-    console.error('Error:', response.status, response.statusText);
-  }
-
+    } else {
+      console.error('Error:', response.status, response.statusText);
+    }
   }
   return (
     <>
@@ -55,22 +68,24 @@ function App() {
         </div>
         <form className="flex flex-sauce" action={addIngredients} method="POST">
           <label htmlFor="ingredients"></label>
-          <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" />
+          <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" required/>
           <button className="btn-add">+ Add Item</button>
         </form>
         <ul>
           {ingredientsListItems}
+          {ingredients.length > 0 && <button className="btn-undo" onClick={undo}>undo</button>}
         </ul>
         <br />
         <section className="recipe-container" aria-live="polite">
           {!recipe && <div className="flex-me">
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
-          <button className="btn-get" onClick={getRecipe}>Get Recipe!</button>
+          <button id="btn-get" className="btn-get" onClick={getRecipe} disabled>Get Recipe!</button>
           </div>
           }
           {recipe && <hr />}
           <ReactMarkdown>{recipe}</ReactMarkdown>
+          {recipe && <button className="btn-refresh" onClick={resetPage}>Reset</button>}
         </section>
       </main>
     </>
