@@ -20,6 +20,7 @@
   --btn-main-clicked: #347893;
   --btn-second: #BF6415;
   --btn-second-clicked: #8F4B10;
+  --btn-delete: #F22727;
 
 }
 
@@ -150,6 +151,17 @@ details ol{
   cursor: not-allowed;
   border: none;
 }
+.btn-delete {
+  font-size: 1rem;
+  color: #8F4B10;
+  display: inline-block;
+  margin-left: 1.5rem;
+  opacity: .5;
+}
+.btn-delete:hover {
+  color: var(--btn-delete);
+  opacity: 1;
+}
 
 .btn-refresh {
   display: block;
@@ -167,21 +179,24 @@ details ol{
   align-items: center;
   padding-bottom: 8px;
 }
-
 .recipe-container {
   background-color: var(--recipe-paper);
   padding: 20px 24px;
   border-radius: 7px;
 }
 .recipe-container h2 {
-    line-height: 28px;
-    font-size: 2rem;
-    font-weight: 400;
+  line-height: 28px;
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 .recipe-container h3 {
   font-size: 1.5;
 }
+.flex-me {
+    display: flex;
+}
+
 /*phone size*/
 @media screen and (max-width: 600px) {
   Header {
@@ -205,7 +220,7 @@ details ol{
     max-width: 95%;
   }
 
-  .flex-me {
+  .flex-column {
     display: flex;
     flex-direction: column;
   }

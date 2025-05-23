@@ -10,7 +10,7 @@ function App() {
   //console.log(recipe, recipe.length);
 
   const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
+        <li key={ingredient}>{ingredient}<button className="btn-delete" onClick={undo}><i className="fa-regular fa-trash-can"></i></button></li>
     ))
 
   function addIngredients(formData) {
@@ -73,11 +73,10 @@ function App() {
         </form>
         <ul>
           {ingredientsListItems}
-          {ingredients.length > 0 && <button className="btn-undo" onClick={undo}>undo</button>}
         </ul>
         <br />
         <section className="recipe-container" aria-live="polite">
-          {!recipe && <div className="flex-me">
+          {!recipe && <div className="flex-column">
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
           <button id="btn-get" className="btn-get" onClick={getRecipe} disabled>Get Recipe!</button>
