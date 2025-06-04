@@ -6,28 +6,29 @@ import ReactMarkdown from 'react-markdown'
 function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
+  const [currentIngredientId] = React.useState(ingredients[0] && ingredients[0].id || "")
   const [recipe, setRecipe] = React.useState("");
-  //console.log(recipe, recipe.length);
+  let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
-  const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}<button className="btn-delete" onClick={undo}><i className="fa-regular fa-trash-can"></i></button></li>
+  const ingredientsListItems = ingredients.map((ingredient) => (
+        <li key={ingredient.id}>{ingredient.body}<button className="btn-delete" onClick={undo}><i className="fa-regular fa-trash-can"></i></button></li>
     ))
+  console.log(ingredientsListItems);
 
   function addIngredients(formData) {
     document.getElementById("btn-get").disabled = false;
-    const newIngredient = formData.get("ingredients")
+    const newIngredient = {
+      id: uuid,
+      body: formData.get("ingredients")
+    }
     setIngredients(prevItem => {
       return [...prevItem, newIngredient]
     }) 
   }
 
-  function undo() {
-    setIngredients(prevItem => {
-      prevItem.pop()
-      return [...prevItem]
-    })
-    document.getElementById("btn-get").disabled = true;
-    console.log(ingredients);
+  function undo() { 
+    //document.getElementById("btn-get").disabled = true;
+    //console.log(ingredients);
   }
 
   function resetPage() {
@@ -36,10 +37,10 @@ function App() {
 
   const URL = 'http://localhost:8000/recipe'
   async function getRecipe() {
-    console.log(`Using ${ingredients} to get Recipe doggy!`)
+    console.log(`Using ${ingredients.body} to get Recipe doggy!`)
     let response = await fetch(URL, {
       method: 'POST',
-      body: JSON.stringify(ingredients),
+      body: JSON.stringify(ingredients.body),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
