@@ -6,7 +6,9 @@ import ReactMarkdown from 'react-markdown'
 function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
-  const [currentIngredientId] = React.useState(ingredients[0] && ingredients[0].id || "")
+  const [currentIngredientId, setCurrentIngredientId] = React.useState(
+    (ingredients[0] && ingredients[0].id) || ""
+  ) // if there is an ingredient in state ingredients(not empty), then assign the .id othersiset assign "" 
   const [recipe, setRecipe] = React.useState("");
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
@@ -23,10 +25,12 @@ function App() {
     }
     setIngredients(prevItem => {
       return [...prevItem, newIngredient]
-    }) 
+    })
+    setCurrentIngredientId(newIngredient.id)
   }
 
   function undo() { 
+    
     //document.getElementById("btn-get").disabled = true;
     //console.log(ingredients);
   }
