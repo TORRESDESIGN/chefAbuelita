@@ -13,9 +13,9 @@ function App() {
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
   const ingredientsListItems = ingredients.map((ingredient) => (
-        <li key={ingredient.id}>{ingredient.body}<button className="btn-delete" onClick={undo}><i className="fa-regular fa-trash-can"></i></button></li>
+        <li key={ingredient.id}>{ingredient.body}<button className="btn-delete"><i className="fa-regular fa-trash-can"></i></button></li>
     ))
-  console.log(ingredientsListItems);
+  console.log(currentIngredientId, ingredients[0]);
 
   function addIngredients(formData) {
     document.getElementById("btn-get").disabled = false;
@@ -29,22 +29,21 @@ function App() {
     setCurrentIngredientId(newIngredient.id)
   }
 
-  function undo() { 
-    
-    //document.getElementById("btn-get").disabled = true;
-    //console.log(ingredients);
-  }
-
   function resetPage() {
     location.reload()
   }
 
   const URL = 'http://localhost:8000/recipe'
+  
   async function getRecipe() {
-    console.log(`Using ${ingredients.body} to get Recipe doggy!`)
+    const ingredientList = ingredients.map(item => {
+      return [item.body]
+    })
+    console.log(`Using ${ingredientList} to get Recipe doggy!`)
+    
     let response = await fetch(URL, {
       method: 'POST',
-      body: JSON.stringify(ingredients.body),
+      body: JSON.stringify(ingredientList),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
@@ -52,11 +51,12 @@ function App() {
     if (response.ok) {
     const result = await response.json();
     setRecipe(result.message)
-    console.log('Success:', result.message);
+      console.log('Success:', result.message);
     } else {
       console.error('Error:', response.status, response.statusText);
     }
   }
+  
   return (
     <>
       <Header />
@@ -84,7 +84,7 @@ function App() {
           {!recipe && <div className="flex-column">
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
-          <button id="btn-get" className="btn-get" onClick={getRecipe} disabled>Get Recipe!</button>
+          <button id="btn-get" className="btn-get" onClick={getRecipe}>Get Recipe!</button>
           </div>
           }
           {recipe && <hr />}
