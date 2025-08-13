@@ -13,9 +13,12 @@ function App() {
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
   const ingredientsListItems = ingredients.map((ingredient) => (
-        <li key={ingredient.id}>{ingredient.body}<button className="btn-delete"><i className="fa-regular fa-trash-can"></i></button></li>
+        <li key={ingredient.id}>{ingredient.body}
+          <button onClick={(event) => {deleteIngredient(ingredient.id)}} className="btn-delete"><i className="fa-regular fa-trash-can"></i>
+          </button>
+        </li>
     ))
-  console.log(currentIngredientId, ingredients[0]);
+  //console.log(currentIngredientId, ingredients[0]);
 
   function addIngredients(formData) {
     document.getElementById("btn-get").disabled = false;
@@ -27,6 +30,22 @@ function App() {
       return [...prevItem, newIngredient]
     })
     setCurrentIngredientId(newIngredient.id)
+  }
+
+  //onMouseEnter={(event) => {getId(ingredient.id)}}
+  /*
+  function getId(ingredientId) {
+    setCurrentIngredientId(ingredientId)
+    console.log(currentIngredientId);
+  }
+  */
+
+  function deleteIngredient(ingredientId) {
+    setIngredients(prevItem => {
+      return prevItem.filter(item => {
+        return item.id !== ingredientId
+      })
+    })
   }
 
   function resetPage() {
