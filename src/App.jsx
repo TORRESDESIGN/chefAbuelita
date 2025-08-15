@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from './Header'
+import IngredientsList from './components/IngredientsList'
+import RecipeSection from './components/RecipeSection'
 import ReactMarkdown from 'react-markdown'
 //import axios from 'axios';
 
@@ -90,26 +92,18 @@ function App() {
             </ol>
           </details>
         </div>
-        <form className="flex flex-sauce" action={addIngredients} method="POST">
-          <label htmlFor="ingredients"></label>
-          <input id="ingredients" name="ingredients" type="text" placeholder="Cheese" required/>
-          <button className="btn-add">+ Add Item</button>
-        </form>
+        <IngredientsList
+          addIngredients={addIngredients}
+        />
         <ul>
           {ingredientsListItems}
         </ul>
         <br />
-        <section className="recipe-container" aria-live="polite">
-          {!recipe && <div className="flex-column">
-          <h3>Ready to get cooking?</h3>
-          <p>Generate a Mexican dish recipe from the list of ingredients.</p>
-          <button id="btn-get" className="btn-get" onClick={getRecipe}>Get Recipe!</button>
-          </div>
-          }
-          {recipe && <hr />}
-          <ReactMarkdown>{recipe}</ReactMarkdown>
-          {recipe && <button className="btn-refresh" onClick={resetPage}>Reset</button>}
-        </section>
+        <RecipeSection
+          getRecipe={getRecipe}
+          recipe={recipe}
+          resetPage={resetPage}
+        />
       </main>
     </>
   )
