@@ -1,6 +1,6 @@
 # Code Documentation
 
-## How to the targeted/clicked items key/id!
+## How to get the targeted/clicked items key/id!
 ```
 function App() {...
 const [ingredients, setIngredients] = React.useState([]);
