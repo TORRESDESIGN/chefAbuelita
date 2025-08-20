@@ -7,7 +7,7 @@ function RecipeSection(props) {
           {!props.recipe && <div className="flex-column">
           <h3>Ready to get cooking?</h3>
           <p>Generate a Mexican dish recipe from the list of ingredients.</p>
-          <button id="btn-get" className="btn-get" onClick={props.getRecipe}>Get Recipe!</button>
+          <button id="btn-get" className="btn-get" onClick={props.getRecipe} disabled={props.isDisabled}>Get Recipe!</button>
           </div>
           }
           {props.recipe && <hr />}

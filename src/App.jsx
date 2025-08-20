@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 import IngredientsList from './components/IngredientsList'
 import RecipeSection from './components/RecipeSection'
-import ReactMarkdown from 'react-markdown'
+
 //import axios from 'axios';
 
 function App() {
@@ -12,10 +12,13 @@ function App() {
     (ingredients[0] && ingredients[0].id) || ""
   ) // if there is an ingredient in state ingredients(not empty), then assign the .id othersiset assign "" 
   const [recipe, setRecipe] = React.useState("");
+  const [hideInput, setHideInput] = React.useState(false);
+  const [hideIngredients, setHideIngredients] = React.useState(false);
+  const [isDisabled, setIsDisabled] = React.useState(true);
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
   const ingredientsListItems = ingredients.map((ingredient) => (
-        <li key={ingredient.id}>{ingredient.body}
+        <li key={ingredient.id} hidden={hideIngredients}>{ingredient.body}
           <button onClick={(event) => {deleteIngredient(ingredient.id)}} className="btn-delete"><i className="fa-regular fa-trash-can"></i>
           </button>
         </li>
@@ -23,7 +26,7 @@ function App() {
   //console.log(currentIngredientId, ingredients[0]);
 
   function addIngredients(formData) {
-    document.getElementById("btn-get").disabled = false;
+    setIsDisabled(prevState => !prevState)
     const newIngredient = {
       id: uuid,
       body: formData.get("ingredients")
@@ -33,14 +36,6 @@ function App() {
     })
     setCurrentIngredientId(newIngredient.id)
   }
-
-  //onMouseEnter={(event) => {getId(ingredient.id)}}
-  /*
-  function getId(ingredientId) {
-    setCurrentIngredientId(ingredientId)
-    console.log(currentIngredientId);
-  }
-  */
 
   function deleteIngredient(ingredientId) {
     setIngredients(prevItem => {
@@ -70,8 +65,10 @@ function App() {
       },
     })
     if (response.ok) {
-    const result = await response.json();
-    setRecipe(result.message)
+      const result = await response.json();
+      setRecipe(result.message)
+      setHideInput(prevState => !prevState)
+      setHideIngredients(prevState => !prevState)
       console.log('Success:', result.message);
     } else {
       console.error('Error:', response.status, response.statusText);
@@ -94,6 +91,7 @@ function App() {
         </div>
         <IngredientsList
           addIngredients={addIngredients}
+          hideInput={hideInput}
         />
         <ul>
           {ingredientsListItems}
@@ -103,6 +101,7 @@ function App() {
           getRecipe={getRecipe}
           recipe={recipe}
           resetPage={resetPage}
+          isDisabled={isDisabled}
         />
       </main>
     </>
