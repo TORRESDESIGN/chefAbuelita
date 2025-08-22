@@ -14,7 +14,7 @@ function App() {
   const [recipe, setRecipe] = React.useState("");
   const [hideInput, setHideInput] = React.useState(false);
   const [hideIngredients, setHideIngredients] = React.useState(false);
-  const [isDisabled, setIsDisabled] = React.useState(true);
+  const isDisabled = ingredients.length === 0;
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
   const ingredientsListItems = ingredients.map((ingredient) => (
@@ -23,10 +23,12 @@ function App() {
           </button>
         </li>
     ))
-  //console.log(currentIngredientId, ingredients[0]);
+  
+  console.log(ingredients.length, isDisabled);
+
+
 
   function addIngredients(formData) {
-    setIsDisabled(prevState => !prevState)
     const newIngredient = {
       id: uuid,
       body: formData.get("ingredients")

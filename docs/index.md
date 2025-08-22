@@ -30,6 +30,24 @@ function deleteIngredient(ingredientId) {
   }
 
 ```
+## How to disable get recipe button if ingredients list empty
+I approached this using the HTML5 disabled attribute which looks like this:
+```
+<button onClick={props.getRecipe} disabled={props.isDisabled}>Get Recipe!
+</button>
+```
+and created a isDisable state that was triggered by the add ingredients function as so:
+```
+setIsDisabled(prevState => !prevState)
+```
+but this was incorrect as it toggled the button with every new ingredient added. I thought about using
+useEffect, but after further investigating useEffect should only be used with *external systems* such as api's,
+and avoiding this would reduce re-renders/better performance.
+so I went the js truthy and falsy approach as so.
+```
+const isDisabled = ingredients.length === 0;
+```
+This was much better and resolved my diable button issue 🎉.
 
 ---
 # H1
