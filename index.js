@@ -15,7 +15,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());// newest way to use middleware instead of express.json()
 app.use(bodyParser.urlencoded({ extended: true }));
-
+/*
+For when I want to get user info(hardware/Ip)
+app.use('/', (req, res, next) => {
+    console.log("middleware...")
+    console.log(`${req.method} ${req.path} - ${req.ip}`, `${req}`)
+    next();
+})
+*/
 //The A.I. sauce
 const SYSTEM_PROMPT = process.env.PROMPT;
 const anthropic = new Anthropic({
@@ -47,7 +54,7 @@ app.post('/recipe', async (req, res) => {
         console.log("Error: ", error)
     }
 
-    //*
+    
     async function getRecipeFromChefClaude(ingredients) {
 
     const ingredientsString = ingredients.join(", ")
@@ -63,40 +70,8 @@ app.post('/recipe', async (req, res) => {
     });
     return msg.content[0].text
     }
-    //*
 })
-/*
-app.get('/', async (req, res) => {
-    try {
-        const anthropic = new Anthropic({  
-            apiKey: process.env.ANTHROPIC_API_KEY,
-        });
-        
-        const ingredientsString = ingredientsArr.join(", ");
-        console.log(`Ingredients: ${ingredientsString}`);
-        
-        const msg = await anthropic.messages.create({
-            model: "claude-3-haiku-20240307",
-            max_tokens: 1024,
-            system: SYSTEM_PROMPT,
-            messages: [
-                { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-            ],
-        });
-        
-        // Return just the content from the response
-        return res.json({
-            "message": msg.content[0].text
-        });
-    } catch (error) {
-        console.error("Error:", error);
-        return res.status(500).json({
-            "error": "Failed to get recipe",
-            "details": error.message
-        });
-    }
-});
-*/
+
 app.listen(PORT, () => {
     console.log(`Server is running on: ${PORT}`);
 });

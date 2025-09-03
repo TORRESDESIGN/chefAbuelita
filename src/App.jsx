@@ -24,8 +24,6 @@ function App() {
         </li>
     ))
   
-  console.log(ingredients.length, isDisabled);
-
 
 
   function addIngredients(formData) {
