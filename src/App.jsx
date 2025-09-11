@@ -23,19 +23,25 @@ function App() {
           </button>
         </li>
     ))
-  
 
-
+  //working function
   function addIngredients(formData) {
     const newIngredient = {
       id: uuid,
-      body: formData.get("ingredients")
+      body: formData.get("ingredients").toLowerCase()
     }
     setIngredients(prevItem => {
       return [...prevItem, newIngredient]
     })
     setCurrentIngredientId(newIngredient.id)
   }
+  
+  //remove duplicates attempt
+  /*
+  function addIngredients(formData) {
+
+  }
+  */
 
   function deleteIngredient(ingredientId) {
     setIngredients(prevItem => {
