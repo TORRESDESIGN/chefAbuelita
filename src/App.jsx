@@ -24,7 +24,8 @@ function App() {
         </li>
     ))
 
-  //working function
+/*
+  //working function(old)
   function addIngredients(formData) {
     const newIngredient = {
       id: uuid,
@@ -35,13 +36,28 @@ function App() {
     })
     setCurrentIngredientId(newIngredient.id)
   }
-  
-  //remove duplicates attempt
-  /*
-  function addIngredients(formData) {
-
-  }
   */
+  //remove duplicates working function
+  
+  function addIngredients(formData) {
+  const ingredientBody = formData.get("ingredients").toLowerCase();
+  
+    setIngredients(prevItems => {
+      // Check if already exists
+      if (prevItems.some(item => item.body === ingredientBody)) {
+        return prevItems; // Return unchanged state
+      }
+      
+      const newIngredient = {
+        id: uuid,
+        body: ingredientBody
+      };
+      
+      setCurrentIngredientId(newIngredient.id);
+      return [...prevItems, newIngredient];
+    });
+  }
+
 
   function deleteIngredient(ingredientId) {
     setIngredients(prevItem => {

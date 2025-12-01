@@ -109,7 +109,7 @@ hr {
 
 p {
   color: #36454F;
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.5rem;/* >4 ingredients(4.5rem = 72px)*/
 }
 
 details ol{
