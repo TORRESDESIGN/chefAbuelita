@@ -8,6 +8,7 @@ import RecipeSection from './components/RecipeSection'
 function App() {
 
   const [ingredients, setIngredients] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState('');
   const [currentIngredientId, setCurrentIngredientId] = React.useState(
     (ingredients[0] && ingredients[0].id) || ""
   ) // if there is an ingredient in state ingredients(not empty), then assign the .id othersiset assign "" 
@@ -45,6 +46,10 @@ function App() {
     setIngredients(prevItems => {
       // Check if already exists
       if (prevItems.some(item => item.body === ingredientBody)) {
+        setErrorMessage(`${ingredientBody} already exist!`)
+        setTimeout(()=> {
+          setErrorMessage("")
+        }, 3000)
         return prevItems; // Return unchanged state
       }
       
@@ -111,6 +116,7 @@ function App() {
             </ol>
           </details>
         </div>
+        {errorMessage && (<i className="error">{errorMessage}</i>)}
         <IngredientsList
           addIngredients={addIngredients}
           hideInput={hideInput}

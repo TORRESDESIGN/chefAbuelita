@@ -196,6 +196,10 @@ details ol{
 .flex-me {
     display: flex;
 }
+.error {
+  color: darkred;
+  font-weight: bold;
+}
 
 /*phone size*/
 @media screen and (max-width: 600px) {

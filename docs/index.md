@@ -49,6 +49,78 @@ const isDisabled = ingredients.length === 0;
 ```
 This was much better and resolved my diable button issue 🎉.
 
+## How to remove duplicate ingredients
+My original code allowed me to add the same ingredients, which is not a good feature to have.
+My old code was the following:
+```
+function addIngredients(formData) {
+    const newIngredient = {
+      id: uuid,
+      body: formData.get("ingredients").toLowerCase()
+    }
+    setIngredients(prevItem => {
+      return [...prevItem, newIngredient]
+    })
+    setCurrentIngredientId(newIngredient.id)
+  }
+```
+My new code is this:
+```
+function addIngredients(formData) {
+  const ingredientBody = formData.get("ingredients").toLowerCase();
+  
+    setIngredients(prevItems => {
+      // Check if already exists
+      if (prevItems.some(item => item.body === ingredientBody)) {
+        return prevItems; // Return unchanged state
+      }
+      
+      const newIngredient = {
+        id: uuid,
+        body: ingredientBody
+      };
+      
+      setCurrentIngredientId(newIngredient.id);
+      return [...prevItems, newIngredient];
+    });
+  }
+```
+This works great, however it does not let the users know why nothing is happening when they try to add a duplicate ingredient,
+I now need to work on a error message to let users know they can do that.
+
+## My error handling of duplicate ingredients
+I added a state to hold the errors.
+
+```
+const [errorMessage, setErrorMessage] = React.useState('');
+```
+And set the error within the subfunction of addIngredients > setIngredients with a timeout so the error would go away after 3 seconds.
+```
+setIngredients(prevItems => {
+      // Check if already exists
+      if (prevItems.some(item => item.body === ingredientBody)) {
+        setErrorMessage(`${ingredientBody} already exist!`)
+        setTimeout(()=> {
+          setErrorMessage("")
+        }, 3000)
+        return prevItems; // Return unchanged state
+      }
+...
+....
+```
+And then slapped it on top of the ingredientsList component.
+```
+ </div>
+        {errorMessage && (<i className="error">{errorMessage}</i>)}
+        <IngredientsList
+          addIngredients={addIngredients}
+          hideInput={hideInput}
+        />
+....
+...
+```
+
+
 ---
 # H1
 ## H2
