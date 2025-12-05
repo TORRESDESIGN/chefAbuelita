@@ -196,12 +196,19 @@ details ol{
 .flex-me {
     display: flex;
 }
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--gold-main);
+  justify-content: flex-end;
+}
 .error {
   color: darkred;
   font-weight: bold;
 }
 
-/*phone size*/
+/*phone size(s23 360px X 780px)*/
 @media screen and (max-width: 600px) {
   Header {
   height: auto;
@@ -238,4 +245,4 @@ details ol{
     @apply flex-wrap gap-y-4;
   }
 
-}/*end of @meda */
+}/*end of @media */

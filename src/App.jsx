@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import IngredientsList from './components/IngredientsList'
 import RecipeSection from './components/RecipeSection'
+import Footer from './components/Footer'
 
 //import axios from 'axios';
 
@@ -46,7 +47,7 @@ function App() {
     setIngredients(prevItems => {
       // Check if already exists
       if (prevItems.some(item => item.body === ingredientBody)) {
-        setErrorMessage(`${ingredientBody} already exist!`)
+        setErrorMessage(`${ingredientBody} already added!`)
         setTimeout(()=> {
           setErrorMessage("")
         }, 3000)
@@ -132,8 +133,9 @@ function App() {
           isDisabled={isDisabled}
         />
       </main>
+      <Footer />
     </>
-  )
+  ) 
 }
 
 export default App

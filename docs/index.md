@@ -47,7 +47,7 @@ so I went the js truthy and falsy approach as so.
 ```
 const isDisabled = ingredients.length === 0;
 ```
-This was much better and resolved my diable button issue 🎉.
+This was much better and resolved my disable button issue 🎉.
 
 ## How to remove duplicate ingredients
 My original code allowed me to add the same ingredients, which is not a good feature to have.
