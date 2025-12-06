@@ -120,6 +120,24 @@ And then slapped it on top of the ingredientsList component.
 ...
 ```
 
+## Adding special sticky footer that stays at bottom of page with Flexbox
+I first needed to change my React fragment(<>...</>) to a div, since RFragments can't have css properties since they
+dont' render any actual DOM element. I needed assign some special properties to the parent element and footer as so.
+### .CSS
+```
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  margin-top: auto;
+  text-align: center;
+}
+```
+Now my footer will stay nicely at the bottom of page regardless of content on the page.
+
 
 ---
 # H1

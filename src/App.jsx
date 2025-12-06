@@ -104,7 +104,7 @@ function App() {
   }
   
   return (
-    <>
+    <div className="main-wrapper">
       <Header />
       <main>
         <div className="info-wrappper">
@@ -134,7 +134,7 @@ function App() {
         />
       </main>
       <Footer />
-    </>
+    </div>
   ) 
 }
 
