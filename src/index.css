@@ -211,6 +211,9 @@ details ol{
   color: darkred;
   font-weight: bold;
 }
+.loading {
+  font-weight: bold;
+}
 
 /*phone size(s23 360px X 780px)*/
 @media screen and (max-width: 600px) {

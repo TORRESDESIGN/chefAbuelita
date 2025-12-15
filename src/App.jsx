@@ -16,6 +16,7 @@ function App() {
   const [recipe, setRecipe] = React.useState("");
   const [hideInput, setHideInput] = React.useState(false);
   const [hideIngredients, setHideIngredients] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const isDisabled = ingredients.length === 0;
   let uuid = self.crypto.randomUUID(); //generates random keys method | fast and lightweight
 
@@ -80,6 +81,7 @@ function App() {
   const URL = 'http://localhost:8000/recipe'
   
   async function getRecipe() {
+    setLoading(loading => !loading);
     const ingredientList = ingredients.map(item => {
       return [item.body]
     })
@@ -97,8 +99,10 @@ function App() {
       setRecipe(result.message)
       setHideInput(prevState => !prevState)
       setHideIngredients(prevState => !prevState)
+      setLoading(loading => !loading);
       console.log('Success:', result.message);
     } else {
+      setLoading(loading => !loading);
       console.error('Error:', response.status, response.statusText);
     }
   }
@@ -118,6 +122,7 @@ function App() {
           </details>
         </div>
         {errorMessage && (<i className="error">{errorMessage}</i>)}
+        {loading && (<i className="loading"> Loading...</i>)}
         <IngredientsList
           addIngredients={addIngredients}
           hideInput={hideInput}
