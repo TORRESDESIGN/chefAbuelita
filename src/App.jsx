@@ -27,19 +27,6 @@ function App() {
         </li>
     ))
 
-/*
-  //working function(old)
-  function addIngredients(formData) {
-    const newIngredient = {
-      id: uuid,
-      body: formData.get("ingredients").toLowerCase()
-    }
-    setIngredients(prevItem => {
-      return [...prevItem, newIngredient]
-    })
-    setCurrentIngredientId(newIngredient.id)
-  }
-  */
   //remove duplicates working function
   
   function addIngredients(formData) {
