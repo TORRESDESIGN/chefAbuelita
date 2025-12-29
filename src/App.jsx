@@ -65,7 +65,9 @@ function App() {
     location.reload()
   }
 
-  const URL = 'http://localhost:8000/recipe'
+  /*const URL = 'https://app2.madebydtor.com/recipe'*/
+  const URL =  'http://localhost:8000/recipe'
+
   
   async function getRecipe() {
     setLoading(loading => !loading);
@@ -87,7 +89,7 @@ function App() {
       setHideInput(prevState => !prevState)
       setHideIngredients(prevState => !prevState)
       setLoading(loading => !loading);
-      console.log('Success:', result.message);
+      console.log('Success!');//result.message: will show recipe
     } else {
       setLoading(loading => !loading);
       console.error('Error:', response.status, response.statusText);

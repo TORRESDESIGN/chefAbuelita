@@ -138,6 +138,10 @@ dont' render any actual DOM element. I needed assign some special properties to 
 ```
 Now my footer will stay nicely at the bottom of page regardless of content on the page.
 
+## Vite Build/Preview notes
+I found out that after finishing app and running vite build and then preview, it will only run front end and not backend.
+I will need to run the backend server as I did in npm run dev mode.
+
 
 ---
 # H1
