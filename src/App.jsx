@@ -65,8 +65,8 @@ function App() {
     location.reload()
   }
 
-  /*const URL = 'https://app2.madebydtor.com/recipe'*/
-  const URL =  'http://localhost:8000/recipe'
+  const URL = 'https://api.app2.madebydtor.com/recipe'
+  /*const URL =  'http://localhost:8000/recipe'*/
 
   
   async function getRecipe() {
